@@ -1,0 +1,11 @@
+README.md
+setup.py
+mtgwas/__init__.py
+mtgwas/gwas.py
+mtgwas/utils.py
+mtgwas/vctest.py
+mtgwas.egg-info/PKG-INFO
+mtgwas.egg-info/SOURCES.txt
+mtgwas.egg-info/dependency_links.txt
+mtgwas.egg-info/not-zip-safe
+mtgwas.egg-info/top_level.txt

@@ -22,7 +22,7 @@ OUTDIR=out ./train_pgan.sh
 ```
 ### Step 4 - Demo
 - Once the model is trained follow the steps as done in [`Notebooks/Demo_pgan.ipynb`](Notebooks/Demo_pgan.ipynb) for visualization and interpolation
-- Requirements: install [`MTGWAS`](../../mtgwas)
+- Requirements: install [`MTGWAS`](../mtgwas)
 
 
 ## Acknowledgement

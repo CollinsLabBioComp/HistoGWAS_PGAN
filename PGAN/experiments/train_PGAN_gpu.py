@@ -20,7 +20,7 @@ def submit_job(command, opts):
     f.write(f'#SBATCH -J {opts["name"]}\n')
     f.write(f'#SBATCH -o {opts["stdout"]}\n')
     f.write(f'#SBATCH -e {opts["stderr"]}\n')
-    f.write(f'#SBATCH -p {opts["queue"]}\n')
+    f.write(f'#SBATCH --partition {opts["partition"]}\n')
     f.write(f'#SBATCH -t {opts["time"]}\n')
     f.write(f'#SBATCH -c {opts["nodes"]}\n')
     f.write(f'#SBATCH --mem={opts["memory"]}G\n')
@@ -28,7 +28,7 @@ def submit_job(command, opts):
     f.write(f'#SBATCH --gres={opts["gpu"]}\n')
     f.write(f'#SBATCH --nice=10000\n')
     f.write(f'\n')
-    f.write(f'source $HOME/.bashrc\n')
+    f.write(f'source myconda\n')
     f.write(f'conda activate {opts["condaenv"]}\n')
     f.write(command)
     f.write(f'\n')
@@ -40,13 +40,13 @@ def submit_job(command, opts):
     
 def run_jobs(tissue_hyperparameter):
     opts = {}
-    opts['queue'] = 'gpu_p'
-    opts["gpu"] = 'gpu:1'
+    opts['partition'] = 'gpu'
+    opts["gres"] = 'gpu:gpuk80:1'
     opts['time'] = '12:00:00'
     opts['qos'] = 'gpu_normal'
     opts['nodes'] = 4
     opts['memory'] = 160
-    opts['condaenv'] = 'milgan'
+    opts['condaenv'] = 'Histogwas_PGAN' #old: milgan
     outdir = tissue_hyperparameter['outdir']
     job_name = tissue_hyperparameter['tissue']
     opts['name'] = job_name
@@ -59,14 +59,14 @@ def run_jobs(tissue_hyperparameter):
     # import pdb
     # pdb.set_trace()
     
-    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 64"
+    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 171"
     # os.system(command)
     submit_job(command, opts)
 
 def create_json_file(tissue):
 
-    data_tissue = {
-    "pathDB": f"/lustre/groups/casale/datasets/gtex/histology/20230425_v2_tiles/stage2/{tissue}/embedding/summary_scanpy_pc.h5ad",
+    data_organoid= {
+    "pathDB": f"/data/Collinslab/tcf7l2/organoid_anndata.h5ad",
     "config": {
         "maxIterAtScale": [
         48000,
@@ -78,37 +78,49 @@ def create_json_file(tissue):
         1000000
         ]
     },
-    'dimEmb': 64,
+    'dimEmb': 171,
     }
-    file_path = f'/lustre/groups/casale/code/users/shubham.chaudhary/projects/AIH-SGML/HistoGWAS/Training/PGAN/config/config_{tissue}.json'
+    file_path = f'/data/Collinslab/tcf7l2/HistoGWAS_PGAN/Training/PGAN/config/config_{tissue}.json'
 
     with open(file_path, "w") as json_file:
-        json.dump(data_tissue, json_file, indent=4)
+        json.dump(data_organoid, json_file, indent=4)
 
 
 
-tissue_list = [
-    
-#     'Adipose_Subcutaneous',
-#    'Colon_Transverse',
-#     'Stomach',
-#     'Esophagus_Mucosa',
-#     'Skin_Sun_Exposed_Lower_leg',
-    'Thyroid',
-#     'Osteoarthritis',
-# 'Esophagus_Muscularis',
-# 'Pancreas',
-# 'Artery_Tibial'
-]
 
 
-tissue_hyperparameter = {}
+organoid_hyperparameter = {}
 os.chdir('..')
-for tissue in tissue_list:
+organoid_hyperparameter['tissue'] = 'Organoid'
+organoid_hyperparameter['outdir'] = '/data/Collinslab/tcf7l2/HistoGWAS_output/Organoid'
+os.makedirs(organoid_hyperparameter['outdir'], exist_ok=True)
+create_json_file('Organoid')
+run_jobs(organoid_hyperparameter)
 
-    tissue_hyperparameter['tissue'] = tissue
-    tissue_hyperparameter['outdir'] = f'/lustre/groups/casale/code/users/shubham.chaudhary/output/projects/gtex/PGAN/{tissue}_test_test'
-    os.makedirs(tissue_hyperparameter['outdir'], exist_ok=True)
-    create_json_file(tissue)
 
-    run_jobs(tissue_hyperparameter)
+
+# tissue_list = [
+    
+# #     'Adipose_Subcutaneous',
+# #    'Colon_Transverse',
+# #     'Stomach',
+# #     'Esophagus_Mucosa',
+# #     'Skin_Sun_Exposed_Lower_leg',
+#     'Thyroid',
+# #     'Osteoarthritis',
+# # 'Esophagus_Muscularis',
+# # 'Pancreas',
+# # 'Artery_Tibial'
+# ]
+
+
+# tissue_hyperparameter = {}
+# os.chdir('..')
+# for tissue in tissue_list:
+
+#     tissue_hyperparameter['tissue'] = tissue
+#     tissue_hyperparameter['outdir'] = f'/lustre/groups/casale/code/users/shubham.chaudhary/output/projects/gtex/PGAN/{tissue}_test_test'
+#     os.makedirs(tissue_hyperparameter['outdir'], exist_ok=True)
+#     create_json_file(tissue)
+
+#     run_jobs(tissue_hyperparameter)

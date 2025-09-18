@@ -49,6 +49,8 @@ class ProgressiveGAN(BaseGAN):
         self.config.miniBatchStdDev = miniBatchStdDev
         self.config.equalizedlR = equalizedlR
         self.dimEmb = kwargs['dimEmb']
+        print(kwargs)
+        print(self.config)
 
         BaseGAN.__init__(self, dimLatentVector, **kwargs)
 
@@ -62,7 +64,7 @@ class ProgressiveGAN(BaseGAN):
                     generationActivation=self.lossCriterion.generationActivation,
                     dimOutput=self.config.dimOutput,
                     equalizedlR=self.config.equalizedlR,
-                     dimEmb=self.dimEmb)
+                    dimEmb=self.dimEmb)
 
         # Add scales if necessary
         for depth in self.config.depthOtherScales:
@@ -85,7 +87,7 @@ class ProgressiveGAN(BaseGAN):
                     miniBatchNormalization=self.config.miniBatchStdDev,
                     dimInput=self.config.dimOutput,
                     equalizedlR=self.config.equalizedlR,
-                     dimEmb=self.dimEmb)
+                    dimEmb=self.dimEmb)
 
         # Add scales if necessary
         for depth in self.config.depthOtherScales:
@@ -99,11 +101,11 @@ class ProgressiveGAN(BaseGAN):
 
     def getOptimizerD(self):
         return optim.Adam(filter(lambda p: p.requires_grad, self.netD.parameters()),
-                          betas=[0, 0.99], lr=self.config.learningRate)
+                          betas=(0.0, 0.99), lr=self.config.learningRate)
 
     def getOptimizerG(self):
         return optim.Adam(filter(lambda p: p.requires_grad, self.netG.parameters()),
-                          betas=[0, 0.99], lr=self.config.learningRate)
+                          betas=(0.0, 0.99), lr=self.config.learningRate)
 
     def addScale(self, depthNewScale):
         r"""

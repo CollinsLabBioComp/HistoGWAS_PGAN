@@ -56,7 +56,10 @@ def make_numpy_grid(arrays_list, gridMaxWidth=2048,
             yStart = r * imgHeight
 
             img = np.array(arrays_list[indexImage])
-            img = Image.fromarray(np.transpose(img, (1,2,0)))
+            if C == 1:
+                img = Image.fromarray(np.transpose(img, (1,0)))
+            else:
+                img = Image.fromarray(np.transpose(img, (1,2,0)))
 
             tmpImage = np.array(img.resize((imgSize, imgHeight), resample=interp[interpolation]))
 

@@ -2,9 +2,11 @@ from torch.utils.data import Dataset
 from PIL import Image
 import anndata
 import torch
-import torchvision
+#import torchvision
 import pdb
 import numpy as np
+#import torchvision.transforms as Transforms
+#from ..utils.image_transform import NumpyResize, NumpyToTensor
 
 
 tissue_list = {
@@ -40,19 +42,37 @@ class AnnDataset(Dataset):
         return len(self.adata)
     
     def __getitem__(self, idx):
-        x = torch.from_numpy(self.adata.X[idx])
+        x = torch.from_numpy(self.adata.X[idx]).float()
         img_path = self.adata.obs['path'].iloc[idx]
-        img = self.transform(Image.open(img_path))
+        img = Image.open(img_path)
+        img = self.transform(img)
         return img, x
 
 
-if __name__=='__main__':
+#if __name__=='__main__':
 
-    pdb.set_trace()
-    pathDB = '/lustre/groups/casale/datasets/gtex/histology/20230425_v2_tiles/stage2/Esophagus_Mucosa/embedding/summary_scanpy.h5ad'
-    transform = torchvision.transforms.ToTensor()
-    dataset = AnnDataset(pathDB,'Thyroid',  transform)
+    #TESTER SCRIPT
+    #pdb.set_trace()
+    # pathDB = '/data/Collinslab/tcf7l2/organoid_anndata.h5ad'
+    # transformlist = [NumpyResize((4,4)),
+    #                     NumpyToTensor(),
+    #                    Transforms.Normalize([0.5], [0.5])]
+    # transform = Transforms.Compose(transformlist)
 
-    img, x = dataset.__getitem__(0)
-    pdb.set_trace()
+    # dataset = AnnDataset(pathDB,'Organoid',  transform)
+    # loader  = torch.utils.data.DataLoader(dataset)
+
+    # for item, data in enumerate(loader, 0):
+
+    #     inputs_real = data[0]
+    #     embs = data[1]
+    #     print(inputs_real)
+    #     print('----------------')
+
+
+
+    #img, x = dataset.__getitem__(0)
+    #print(img)
+    #print(x)
+    #pdb.set_trace()
 

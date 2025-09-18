@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import glob
 import os
 from os.path import join, dirname
 
@@ -19,34 +18,34 @@ def submit_job(command, opts):
     f.write(f'\n')
     f.write(f'#SBATCH -J {opts["name"]}\n')
     f.write(f'#SBATCH -o {opts["stdout"]}\n')
-    f.write(f'#SBATCH -e {opts["stderr"]}\n')
-    f.write(f'#SBATCH --partition {opts["partition"]}\n')
-    f.write(f'#SBATCH -t {opts["time"]}\n')
-    f.write(f'#SBATCH -c {opts["nodes"]}\n')
-    f.write(f'#SBATCH --mem={opts["memory"]}G\n')
-    f.write(f'#SBATCH --qos={opts["qos"]}\n')
-    f.write(f'#SBATCH --gres={opts["gpu"]}\n')
-    f.write(f'#SBATCH --nice=10000\n')
+    f.write(f'#SBATCH --error={opts["stderr"]}\n')
+    f.write(f'#SBATCH --partition={opts["partition"]}\n')
+    f.write(f'#SBATCH --time={opts["time"]}\n')
+    #f.write(f'#SBATCH --cpu- {opts["nodes"]}\n')
+    #f.write(f'#SBATCH --mem={opts["memory"]}g\n')
+    #f.write(f'#SBATCH --qos={opts["qos"]}\n')
+    f.write(f'#SBATCH --gres={opts["gres"]}\n')
+    #f.write(f'#SBATCH --nice=10000\n')
     f.write(f'\n')
-    f.write(f'source myconda\n')
+    f.write('source myconda\n')
     f.write(f'conda activate {opts["condaenv"]}\n')
     f.write(command)
     f.write(f'\n')
     f.close()
 
     os.system(f'sbatch submit.sh')
-    os.system('rm submit.sh')
+    #os.system('rm submit.sh')
     
     
 def run_jobs(tissue_hyperparameter):
     opts = {}
     opts['partition'] = 'gpu'
-    opts["gres"] = 'gpu:gpuk80:1'
-    opts['time'] = '12:00:00'
-    opts['qos'] = 'gpu_normal'
+    opts["gres"] = 'gpu:a100:2'
+    opts['time'] = '36:00:00'
+    #opts['qos'] = 'gpu_normal'
     opts['nodes'] = 4
     opts['memory'] = 160
-    opts['condaenv'] = 'Histogwas_PGAN' #old: milgan
+    opts['condaenv'] = 'Histogwas_PGAN' 
     outdir = tissue_hyperparameter['outdir']
     job_name = tissue_hyperparameter['tissue']
     opts['name'] = job_name
@@ -59,7 +58,7 @@ def run_jobs(tissue_hyperparameter):
     # import pdb
     # pdb.set_trace()
     
-    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 171"
+    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 171 --dimOutput 1 --restart --np_vis"
     # os.system(command)
     submit_job(command, opts)
 
@@ -78,9 +77,9 @@ def create_json_file(tissue):
         1000000
         ]
     },
-    'dimEmb': 171,
+    'dimEmb': 171    
     }
-    file_path = f'/data/Collinslab/tcf7l2/HistoGWAS_PGAN/Training/PGAN/config/config_{tissue}.json'
+    file_path = f'/data/dennyal/repos/HistoGWAS_PGAN/PGAN/config/config_{tissue}.json'
 
     with open(file_path, "w") as json_file:
         json.dump(data_organoid, json_file, indent=4)
@@ -92,7 +91,7 @@ def create_json_file(tissue):
 organoid_hyperparameter = {}
 os.chdir('..')
 organoid_hyperparameter['tissue'] = 'Organoid'
-organoid_hyperparameter['outdir'] = '/data/Collinslab/tcf7l2/HistoGWAS_output/Organoid'
+organoid_hyperparameter['outdir'] = '/data/Collinslab/projects/HistoGWAS/Organoid'
 os.makedirs(organoid_hyperparameter['outdir'], exist_ok=True)
 create_json_file('Organoid')
 run_jobs(organoid_hyperparameter)

@@ -4,3 +4,6 @@ visdom
 h5py
 nevergrad
 numpy
+torch
+torchvision
+anndata

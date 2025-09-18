@@ -62,6 +62,7 @@ if __name__ == "__main__":
 
     # Retrieve the model we want to launch
     baseArgs, unknown = parser.parse_known_args()
+    print(baseArgs.model_name, unknown)
     trainerModule = getTrainer(baseArgs.model_name)
 
     # Build the output durectory if necessary

@@ -19,7 +19,7 @@ class NumpyResize(object):
         r"""
         Args:
 
-            img (np array): image to be resized
+            img: image to be resized
 
         Returns:
 
@@ -27,8 +27,13 @@ class NumpyResize(object):
         """
         if not isinstance(img, Image.Image):
             img = Image.fromarray(img)
-        return np.array(img.resize(self.size, resample=Image.BILINEAR))
 
+        img = img.resize(self.size, resample=Image.BILINEAR)
+
+        arr = np.array(img, dtype=np.uint16).astype(np.float32)
+        arr /= 65535.0
+        return arr
+    
     def __repr__(self):
         return self.__class__.__name__ + '(p={})'.format(self.p)
 

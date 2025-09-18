@@ -3,9 +3,8 @@ import os
 import time
 import json
 import math
-
+import importlib
 import torch
-
 
 def isinf(tensor):
     r"""Returns a new tensor with boolean elements representing if each element
@@ -306,10 +305,13 @@ def loadmodule(package, name, prefix='..'):
     Returns:
         A pointer to the loaded module
     """
-    strCmd = "from " + prefix + package + " import " + name + " as module"
-    exec(strCmd)
-    return eval('module')
-
+    # print(prefix, package, name)
+    # strCmd = "from " + package + " import " + name + " as module"
+    # print(strCmd)
+    #exec(strCmd)
+    mod = importlib.import_module(f"{prefix}{package}")
+    print(mod)
+    return getattr(mod, name)
 
 def saveScore(outPath, outValue, *args):
 

@@ -450,7 +450,8 @@ class GANTrainer():
                          Transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
 
         if self.modelConfig.dimOutput == 1:
-            transformList = [Transforms.Grayscale(1)] + transformList
+            transformList[-1] = Transforms.Normalize([0.5], [0.5])
+
 
         transform = Transforms.Compose(transformList)
 
@@ -501,10 +502,16 @@ class GANTrainer():
         """
 
         i = shiftIter
+        print(f"{i}")
+        print("Scale ", scale)
+        j = 0
 
         for item, data in enumerate(dbLoader, 0):
 
             # logging.info(f'.. spuppy luppy')
+            j +=1 
+            if j % 100 ==0:
+                print(data[0])
 
             inputs_real = data[0]
             embs = data[1]
@@ -514,7 +521,6 @@ class GANTrainer():
 
             # Additionnal updates inside a scale
             inputs_real = self.inScaleUpdate(i, scale, inputs_real)
-
             if len(data) > 2:
                 mask = data[2]
                 allLosses = self.model.optimizeParameters(
@@ -537,17 +543,22 @@ class GANTrainer():
                 print('[%d : %6d] loss G : %.3f loss D : %.3f' % (scale, i,
                       self.lossProfile[-1]["lossG"][-1],
                       self.lossProfile[-1]["lossD"][-1]))
+                print("loss G ", self.lossProfile[-1]["lossG"][-1])
+                print("loss D ", self.lossProfile[-1]["lossD"][-1])
 
                 self.resetRunningLosses()
 
                 if self.visualisation is not None:
                     self.sendToVisualization(inputs_real, embs, scale)
 
+                print("Visualizaition perhaps should be done")
+
             if self.checkPointDir is not None:
                 if i % self.saveIter == 0:
                     labelSave = self.modelLabel + ("_s%d_i%d" % (scale, i))
                     self.saveCheckpoint(inputs_real, embs, self.checkPointDir,
                                         labelSave, scale, i)
+                    print("Check point saved")
 
             if i == maxIter:
                 return True

@@ -477,7 +477,7 @@ class BaseGAN():
             - path (string): file where the model is stored
         """
 
-        in_state = torch.load(path, map_location=self.device)
+        in_state = torch.load(path, map_location=self.device, weights_only=False) 
         self.load_state_dict(in_state,
                              loadG=loadG,
                              loadD=loadD,

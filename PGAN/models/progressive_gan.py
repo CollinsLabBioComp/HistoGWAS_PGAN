@@ -49,8 +49,6 @@ class ProgressiveGAN(BaseGAN):
         self.config.miniBatchStdDev = miniBatchStdDev
         self.config.equalizedlR = equalizedlR
         self.dimEmb = kwargs['dimEmb']
-        print(kwargs)
-        print(self.config)
 
         BaseGAN.__init__(self, dimLatentVector, **kwargs)
 

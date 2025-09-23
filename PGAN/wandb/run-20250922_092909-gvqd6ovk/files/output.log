@@ -1,0 +1,439 @@
+Running PGAN
+here True
+cuda:0
+size 10
+39838 images detected
+size (4, 4)
+/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/utils/data/dataloader.py:627: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Scale  0
+Changing alpha to 0.000
+/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/models/base_GAN.py:282: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha = 1) (Triggered internally at /pytorch/torch/csrc/utils/python_arg_parser.cpp:1691.)
+  avg_p.mul_(0.999).add_(0.001, p.data)
+[0 :    100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :    900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   1900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :   2500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   2900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   3900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   4900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :   5000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   5900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   6900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :   7500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   7900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   8900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :   9900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :  10000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  10900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  11900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :  12500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  12900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  13900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  14900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :  15000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  15900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/visualization/np_visualizer.py:17: RuntimeWarning: invalid value encountered in cast
+  arrays_list = ((arrays_list + 1.0) * 255.0 / 2.0).astype(np.uint8)
+Check point saved
+[0 :  16100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  16900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Scale  0
+[0 :  17500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  17900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18000] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18100] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18200] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18300] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18400] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18500] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18600] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18700] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18800] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+[0 :  18900] loss G : nan loss D : nan
+Visualizaition perhaps should be done
+Traceback (most recent call last):
+  File "/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/train.py", line 155, in <module>
+    GANTrainer.train()
+    ~~~~~~~~~~~~~~~~^^
+  File "/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/models/trainer/progressive_gan_trainer.py", line 242, in train
+    status = self.trainOnEpoch(dbLoader, scale,
+                               shiftIter=shiftIter,
+                               maxIter=self.modelConfig.maxIterAtScale[scale])
+  File "/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/models/trainer/gan_trainer.py", line 525, in trainOnEpoch
+    allLosses = self.model.optimizeParameters(inputs_real,
+                                              embs,
+                                              inputLabels=None)
+  File "/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/models/base_GAN.py", line 249, in optimizeParameters
+    predFakeD = self.netD(predFakeG, self.emb_input)
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/parallel/data_parallel.py", line 192, in forward
+    return self.module(*inputs[0], **module_kwargs[0])
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/models/networks/progressive_conv_net.py", line 387, in forward
+    x = self.leakyRelu(self.groupScaleZero[0](x))
+                       ~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/container.py", line 377, in __getitem__
+    return self._modules[self._get_abs_string_index(idx)]
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/data/dennyal/conda/envs/histogwas2/lib/python3.13/site-packages/torch/nn/modules/container.py", line 364, in _get_abs_string_index
+    return str(idx)
+KeyboardInterrupt

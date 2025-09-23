@@ -1,6 +1,6 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 import os
-
+import wandb
 from .standard_configurations.pgan_config import _C
 from ..progressive_gan import ProgressiveGAN
 from .gan_trainer import GANTrainer
@@ -233,6 +233,9 @@ class ProgressiveGANTrainer(GANTrainer):
                     self.modelConfig.iterAlphaJump[scale][shiftAlpha] < shiftIter:
                 shiftAlpha += 1
 
+            wandb.log({"scale_start": scale, "total_iters_for_scale": self.modelConfig.maxIterAtScale[scale]})
+
+
             while shiftIter < self.modelConfig.maxIterAtScale[scale]:
 
                 self.indexJumpAlpha = shiftAlpha
@@ -241,12 +244,14 @@ class ProgressiveGANTrainer(GANTrainer):
                                            maxIter=self.modelConfig.maxIterAtScale[scale])
 
                 if not status:
+                    wandb.log({"divergence_detected": True, "scale": scale, "iter": shiftIter})
                     return False
 
                 shiftIter += sizeDB
                 while shiftAlpha < len(self.modelConfig.iterAlphaJump[scale]) and \
                         self.modelConfig.iterAlphaJump[scale][shiftAlpha] < shiftIter:
                     shiftAlpha += 1
+
 
             # Save a checkpoint
             if self.checkPointDir is not None:

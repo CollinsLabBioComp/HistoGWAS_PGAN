@@ -1,0 +1,197 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            xwh27bjsl9p2140792rw7w5f8qtwx1ol:
+                args:
+                    - PGAN
+                    - -c
+                    - config/config_Organoid.json
+                    - -n
+                    - Organoid
+                    - --dir
+                    - /data/dennyal/repos/HistoGWAS_PGAN
+                    - --dimEmb
+                    - "171"
+                    - --dimOutput
+                    - "1"
+                    - --np_vis
+                codePath: PGAN/train.py
+                codePathLocal: train.py
+                cpu_count: 28
+                cpu_count_logical: 56
+                cudaVersion: "11.4"
+                disk:
+                    /:
+                        total: "956238921728"
+                        used: "16965857280"
+                email: anddenny16@gmail.com
+                executable: /data/dennyal/conda/envs/Histogwas_PGAN/bin/python
+                git:
+                    commit: d225b44c6cb86b9d9b797e06604fccd95d07dd7c
+                    remote: git@github.com:CollinsLabBioComp/HistoGWAS_PGAN.git
+                gpu: Tesla K80
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Kepler
+                      name: Tesla K80
+                      uuid: GPU-ca0451f1-c6bc-42ca-e8a5-77e198285d71
+                host: cn4201
+                memory:
+                    total: "270051344384"
+                os: Linux-4.18.0-425.19.2.el8_7.x86_64-x86_64-with-glibc2.28
+                program: /vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN/train.py
+                python: CPython 3.13.7
+                root: /vf/users/dennyal/repos/HistoGWAS_PGAN/PGAN
+                slurm:
+                    cluster_name: biowulf
+                    conf: /usr/local/slurm_etc.gpu/slurm.conf
+                    cpu_bind: quiet,mask_cpu:0x00000020000002
+                    cpu_bind_list: "0x00000020000002"
+                    cpu_bind_type: 'mask_cpu:'
+                    cpu_bind_verbose: quiet
+                    cpus_on_node: "2"
+                    distribution: cyclic
+                    gpus_on_node: "1"
+                    gtids: "0"
+                    job_account: lesb
+                    job_cpus_per_node: "2"
+                    job_end_time: "1758343998"
+                    job_gid: "62323"
+                    job_id: "1071853"
+                    job_name: sinteractive
+                    job_nodelist: cn4201
+                    job_num_nodes: "1"
+                    job_partition: interactive
+                    job_qos: global
+                    job_start_time: "1758315198"
+                    job_uid: "62323"
+                    job_user: dennyal
+                    jobid: "1071853"
+                    launch_node_ipaddr: 10.1.201.9
+                    localid: "0"
+                    mem_per_node: "16384"
+                    nnodes: "1"
+                    nodeid: "0"
+                    nodelist: cn4201
+                    prio_process: "0"
+                    procid: "0"
+                    pty_port: "36069"
+                    pty_win_col: "232"
+                    pty_win_row: "29"
+                    srun_comm_host: 10.1.201.9
+                    srun_comm_port: "44705"
+                    step_gpus: "1"
+                    step_id: "0"
+                    step_launcher_port: "44705"
+                    step_nodelist: cn4201
+                    step_num_nodes: "1"
+                    step_num_tasks: "1"
+                    step_tasks_per_node: "1"
+                    stepid: "0"
+                    submit_dir: /home/dennyal
+                    submit_host: biowulf.nih.gov
+                    task_pid: "1026018"
+                    tasks_per_node: "2"
+                    topology_addr: cn4201
+                    topology_addr_pattern: node
+                    umask: "0027"
+                startedAt: "2025-09-19T21:10:13.319070Z"
+                writerId: xwh27bjsl9p2140792rw7w5f8qtwx1ol
+        m: []
+        python_version: 3.13.7
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 13
+                - 16
+            "4": 3.13.7
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64
+GDPP:
+    value: null
+Scale_iter:
+    value: null
+alphaJumpMode:
+    value: null
+alphaJumpVals:
+    value: null
+alphaNJumps:
+    value: null
+alphaSizeJumps:
+    value: null
+baseLearningRate:
+    value: null
+config:
+    value:
+        dimOutput: 1
+        maxIterAtScale:
+            - 48000
+            - 96000
+            - 96000
+            - 96000
+            - 96000
+            - 96000
+            - 1000000
+configPath:
+    value: config/config_Organoid.json
+depthScales:
+    value: null
+dimEmb:
+    value: 171
+dimLatentVector:
+    value: null
+dimOutput:
+    value: 1
+dir:
+    value: /data/dennyal/repos/HistoGWAS_PGAN
+epsilonD:
+    value: null
+evalIter:
+    value: 100
+initBiasToZero:
+    value: null
+iterAlphaJump:
+    value: null
+lambdaGP:
+    value: null
+leakyness:
+    value: null
+lossMode:
+    value: null
+maxIterAtScale:
+    value: null
+miniBatchSize:
+    value: null
+miniBatchStdDev:
+    value: null
+model_name:
+    value: PGAN
+name:
+    value: Organoid
+no_vis:
+    value: false
+np_vis:
+    value: true
+overrides:
+    value: false
+partition_value:
+    value: null
+pathDB:
+    value: /data/Collinslab/tcf7l2/organoid_anndata.h5ad
+perChannelNormalization:
+    value: null
+restart:
+    value: false
+saveIter:
+    value: 16000
+weightConditionD:
+    value: null
+weightConditionG:
+    value: null

@@ -71,8 +71,10 @@ class BaseGAN():
             self.trainTmp = BaseConfig()
 
         self.useGPU = useGPU and torch.cuda.is_available()
+        print("here", torch.cuda.is_available())
         if self.useGPU:
             self.device = torch.device("cuda:0")
+            print(self.device)
             self.n_devices = torch.cuda.device_count()
         else:
             self.device = torch.device("cpu")

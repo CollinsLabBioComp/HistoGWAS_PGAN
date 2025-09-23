@@ -3,6 +3,8 @@ import os
 import sys
 import importlib
 import argparse
+import wandb
+import torch
 
 from models.utils.utils import getVal, getLastCheckPoint, loadmodule
 from models.utils.config import getConfigOverrideFromParser, \
@@ -60,9 +62,10 @@ if __name__ == "__main__":
     parser.add_argument('--dimEmb', help="dimension of the mebedding",
                         type=int, dest="dimEmb", default=32)
 
+
+    print("is torch: ", torch.cuda.is_available())
     # Retrieve the model we want to launch
     baseArgs, unknown = parser.parse_known_args()
-    print(baseArgs.model_name, unknown)
     trainerModule = getTrainer(baseArgs.model_name)
 
     # Build the output durectory if necessary
@@ -100,13 +103,19 @@ if __name__ == "__main__":
 
     with open(kwargs["configPath"], 'rb') as file:
         trainingConfig = json.load(file)
-    print(trainingConfig)
 
     # Model configuration
     modelConfig = trainingConfig.get("config", {})
     for item, val in configOverride.items():
         modelConfig[item] = val
     trainingConfig["config"] = modelConfig
+
+
+    wandb.init(
+        project="Organoid ProgressiveGAN",      
+        name=modelLabel,               
+        config={**trainingConfig, **kwargs}
+    )
 
     # Visualization module
     vis_module = None

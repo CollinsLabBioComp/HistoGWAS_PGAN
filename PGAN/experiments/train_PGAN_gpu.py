@@ -21,13 +21,13 @@ def submit_job(command, opts):
     f.write(f'#SBATCH --error={opts["stderr"]}\n')
     f.write(f'#SBATCH --partition={opts["partition"]}\n')
     f.write(f'#SBATCH --time={opts["time"]}\n')
-    #f.write(f'#SBATCH --cpu- {opts["nodes"]}\n')
-    #f.write(f'#SBATCH --mem={opts["memory"]}g\n')
-    #f.write(f'#SBATCH --qos={opts["qos"]}\n')
+    f.write(f'#SBATCH --mem={opts["memory"]}g\n')
+    f.write(f'#SBATCH --cpus-per-task={opts["cpu"]}\n')
     f.write(f'#SBATCH --gres={opts["gres"]}\n')
     #f.write(f'#SBATCH --nice=10000\n')
     f.write(f'\n')
     f.write('source myconda\n')
+    f.write('source ~/.bashrc\n')
     f.write(f'conda activate {opts["condaenv"]}\n')
     f.write(command)
     f.write(f'\n')
@@ -41,11 +41,10 @@ def run_jobs(tissue_hyperparameter):
     opts = {}
     opts['partition'] = 'gpu'
     opts["gres"] = 'gpu:a100:2'
-    opts['time'] = '36:00:00'
-    #opts['qos'] = 'gpu_normal'
-    opts['nodes'] = 4
+    opts['time'] = '48:00:00'
+    opts['cpu'] = 4
     opts['memory'] = 160
-    opts['condaenv'] = 'Histogwas_PGAN' 
+    opts['condaenv'] = 'histogwas2' 
     outdir = tissue_hyperparameter['outdir']
     job_name = tissue_hyperparameter['tissue']
     opts['name'] = job_name
@@ -95,31 +94,3 @@ organoid_hyperparameter['outdir'] = '/data/Collinslab/projects/HistoGWAS/Organoi
 os.makedirs(organoid_hyperparameter['outdir'], exist_ok=True)
 create_json_file('Organoid')
 run_jobs(organoid_hyperparameter)
-
-
-
-# tissue_list = [
-    
-# #     'Adipose_Subcutaneous',
-# #    'Colon_Transverse',
-# #     'Stomach',
-# #     'Esophagus_Mucosa',
-# #     'Skin_Sun_Exposed_Lower_leg',
-#     'Thyroid',
-# #     'Osteoarthritis',
-# # 'Esophagus_Muscularis',
-# # 'Pancreas',
-# # 'Artery_Tibial'
-# ]
-
-
-# tissue_hyperparameter = {}
-# os.chdir('..')
-# for tissue in tissue_list:
-
-#     tissue_hyperparameter['tissue'] = tissue
-#     tissue_hyperparameter['outdir'] = f'/lustre/groups/casale/code/users/shubham.chaudhary/output/projects/gtex/PGAN/{tissue}_test_test'
-#     os.makedirs(tissue_hyperparameter['outdir'], exist_ok=True)
-#     create_json_file(tissue)
-
-#     run_jobs(tissue_hyperparameter)

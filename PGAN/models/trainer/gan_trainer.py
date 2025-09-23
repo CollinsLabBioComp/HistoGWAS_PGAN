@@ -11,6 +11,7 @@ from ..utils.image_transform import NumpyResize, NumpyToTensor
 from ..datasets.attrib_dataset import AttribDataset
 from ..datasets.anndata_dataset import AnnDataset
 from ..datasets.hd5 import H5Dataset
+import wandb
 
 
 import logging
@@ -502,16 +503,11 @@ class GANTrainer():
         """
 
         i = shiftIter
-        print(f"{i}")
         print("Scale ", scale)
-        j = 0
 
         for item, data in enumerate(dbLoader, 0):
 
             # logging.info(f'.. spuppy luppy')
-            j +=1 
-            if j % 100 ==0:
-                print(data[0])
 
             inputs_real = data[0]
             embs = data[1]
@@ -543,8 +539,13 @@ class GANTrainer():
                 print('[%d : %6d] loss G : %.3f loss D : %.3f' % (scale, i,
                       self.lossProfile[-1]["lossG"][-1],
                       self.lossProfile[-1]["lossD"][-1]))
-                print("loss G ", self.lossProfile[-1]["lossG"][-1])
-                print("loss D ", self.lossProfile[-1]["lossD"][-1])
+          
+                wandb.log({
+                    "iter": i,
+                    "scale": scale,
+                    "G_loss": self.lossProfile[-1]["lossG"][-1],
+                    "D_loss": self.lossProfile[-1]["lossD"][-1],
+                })
 
                 self.resetRunningLosses()
 

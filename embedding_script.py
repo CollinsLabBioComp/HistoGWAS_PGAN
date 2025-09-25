@@ -10,7 +10,7 @@ import anndata as ad
 
 
 # Load in all System Vars
-IMAGE_DIR = '/data/Collinslab/tcf7l2/nyscf-organoid-images-processed/'
+IMAGE_DIR = '/data/Collinslab/tcf7l2/nyscf-organoid-images-processed/NIHB074'
 SCRIPT_DIR = '/data/dennyal/repos/HistoGWAS_PGAN'
 resnet50 = torch.hub.load('facebookresearch/dino:main', 'dino_resnet50')
 resnet50.eval()
@@ -69,36 +69,43 @@ def create_anndata(embeddings, i, image_dict):
     
 
 def main():
-    image_dict = {}
+    overall_dict = {}
     embeddings = []
+    i = 0
     for root, _, files in os.walk(IMAGE_DIR, topdown=True):
         relative_path = os.path.relpath(root, SCRIPT_DIR)
-        for i, file in enumerate(files):
+        for file in files:
+            i +=1
+            image_dict = {}
             if file.endswith('.png'):
-                relative_path = os.path.join(relative_path, file)
+                abs_path = os.path.join(relative_path, file)
                 try:
-                    img_tensor = preprocess(image_path=relative_path)
+                    img_tensor = preprocess(image_path=abs_path)
                 except Exception as e:
-                    print(f"Error opening image {abs_path}: {e}")
+                    print(f"Error opening image: {e}")
                     raise SystemExit("Issue opening images")
                 
+                print(i)
+                print("file", abs_path)
                 input_tensor = img_tensor.repeat(3,1,1).unsqueeze(0)
                 abs_path = os.path.join(root, file)
                 gpu_tensor = input_tensor.to(DEVICE)
                 embedding = embed(gpu_tensor)
                 embedding_arr = np.asarray(embedding.squeeze(0))
                 embeddings.append(embedding_arr)
-                image_dict[i] = abs_path
+
+                image_dict['file'] = abs_path
+                overall_dict[i] = image_dict
 
 
-                
-                if len(embeddings) >= 10000:
-                    create_anndata(embeddings, i, image_dict)
+
+                if len(embeddings) >= 20000:
+                    create_anndata(embeddings, i, overall_dict)
                     embeddings = []
+                    overall_dict = {}
 
             
-
-        
 if __name__ == "__main__":
-    test = '/data/Collinslab/tcf7l2/nyscf-organoid-images-processed/NIHB120/DAY15/NIHB120_plate101/Images/r01c01f01p01-ch1sk1fk1fl1.png'
-    test_script(test)
+    # test = '/data/Collinslab/tcf7l2/nyscf-organoid-images-processed/NIHB120/DAY15/NIHB120_plate101/Images/r01c01f01p01-ch1sk1fk1fl1.png'
+    # test_script(test)
+    main()

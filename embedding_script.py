@@ -8,6 +8,8 @@ import pandas as pd
 import anndata as ad
 
 
+
+# Load in all System Vars
 IMAGE_DIR = '/data/Collinslab/tcf7l2/nyscf-organoid-images-processed/'
 SCRIPT_DIR = '/data/dennyal/repos/HistoGWAS_PGAN'
 resnet50 = torch.hub.load('facebookresearch/dino:main', 'dino_resnet50')
@@ -15,12 +17,14 @@ resnet50.eval()
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 resnet50.to(DEVICE)
 
+#Transforms 
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize([0.5], [0.5]),
 ])
 
 
+# We need to convert from uint16 to float
 def preprocess(image_path):
     img = Image.open(image_path)
     arr = np.array(img, dtype = np.uint16).astype(np.float32)
@@ -29,6 +33,8 @@ def preprocess(image_path):
     img.close()
     return transform_arr
 
+
+#actual embedding time
 def embed(image_arr):
     with torch.no_grad():
         output = resnet50(image_arr)
@@ -36,29 +42,31 @@ def embed(image_arr):
     return output
 
 
+#tester script for debug
 def test_script(file_path):
+    overall = {}
     image_dict = {}
     embeddings = []
+    idx = 0
     relative_path = os.path.relpath(file_path, SCRIPT_DIR)
     input_tensor = preprocess(relative_path)
     input_tensor = input_tensor.repeat(3,1,1).unsqueeze(0)
-    print(input_tensor.shape)
     embedding = embed(input_tensor)
-    print(embedding)
-    image_dict[file_path] = embedding
-    print(embedding.shape)
+    image_dict['file'] = file_path
+    overall[idx] = image_dict
     embedding = embedding.squeeze(0)
     embedding = np.asarray(embedding)
     embeddings.append(embedding)
-    create_anndata(embeddings, 0)
+    create_anndata(embeddings, idx, overall)
 
 
-def create_anndata(embeddings, i):
+def create_anndata(embeddings, i, image_dict):
     np_embeddings = np.array(embeddings)
-    embed_ad = ad.AnnData(X=np_embeddings)
+    print(image_dict)
+    df = pd.DataFrame.from_dict(image_dict, orient='index')
+    embed_ad = ad.AnnData(X=np_embeddings, obs = df)
     embed_ad.write_h5ad(f'./embeddings/embedding{i}.h5ad', compression = 'gzip')
     
-
 
 def main():
     image_dict = {}
@@ -81,8 +89,11 @@ def main():
                 embedding_arr = np.asarray(embedding.squeeze(0))
                 embeddings.append(embedding_arr)
                 image_dict[i] = abs_path
+
+
+                
                 if len(embeddings) >= 10000:
-                    create_anndata(embeddings, i)
+                    create_anndata(embeddings, i, image_dict)
                     embeddings = []
 
             

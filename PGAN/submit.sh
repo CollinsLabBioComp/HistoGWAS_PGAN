@@ -12,4 +12,4 @@
 source myconda
 source ~/.bashrc
 conda activate histogwas2
-python train.py PGAN -c config/config_Organoid.json -n Organoid --dir /data/Collinslab/projects/HistoGWAS/Organoid --dimEmb 171 --dimOutput 1 --restart --np_vis
+python train.py PGAN -c config/config_Organoid.json -n Organoid --dir /data/Collinslab/projects/HistoGWAS/Organoid --dimEmb 171 --dimOutput 1 --np_vis

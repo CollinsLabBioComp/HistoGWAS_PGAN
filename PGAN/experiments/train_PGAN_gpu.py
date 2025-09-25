@@ -57,7 +57,7 @@ def run_jobs(tissue_hyperparameter):
     # import pdb
     # pdb.set_trace()
     
-    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 171 --dimOutput 1 --restart --np_vis"
+    command = f"python train.py PGAN -c config/config_{tissue_hyperparameter['tissue']}.json -n {tissue_hyperparameter['tissue']} --dir {tissue_hyperparameter['outdir']} --dimEmb 171 --dimOutput 1 --np_vis"
     # os.system(command)
     submit_job(command, opts)
 

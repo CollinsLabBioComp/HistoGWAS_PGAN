@@ -1,0 +1,15 @@
+{
+    "pathDB": "/data/Collinslab/tcf7l2/organoid_anndata.h5ad",
+    "config": {
+        "maxIterAtScale": [
+            48000,
+            96000,
+            96000,
+            96000,
+            96000,
+            96000,
+            1000000
+        ]
+    },
+    "dimEmb": 171
+}

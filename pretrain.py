@@ -38,7 +38,8 @@ class AnnDataset(Dataset):
         transformed = self.transform(img_arr)
         transformed = transformed.repeat(3,1,1)
         one_hot = torch.from_numpy(np.asarray(self.adata.obs.iloc[idx,]["edit_id_-/-": "edit_id_WT/WT"]).astype(np.float32))
-        return transformed, one_hot
+        label = int(np.argmax(one_hot))
+        return transformed, label
 
 
 
@@ -54,7 +55,7 @@ def freeze_lstlayer(class_names):
                 param.requires_grad = False
 
 
-    #DINO.to(DEVICE)
+    DINO.to(DEVICE)
 
 
 
@@ -99,9 +100,11 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
                         loss.backward()
                         optimizer.step()
 
+                    print(preds)                    
+                    print(labels.data)
                 # statistics
+
                 running_loss += loss.item() * inputs.size(0)
-                _, labels = torch.max(labels.data, 1)
                 running_corrects += torch.sum(preds == labels.data)
             if phase == 'train':
                 scheduler.step()
@@ -141,16 +144,27 @@ def eval():
 
 
     og_ad = AnnDataset(DF_FILE, transform)
-    img, label = og_ad.__getitem__(0)
-    with torch.no_grad():
-        img.to(DEVICE)
-        output = DINO(img)
+    for i in range(20):
+        img, label = og_ad.__getitem__(i)
+        img = img.unsqueeze(0)
 
-    _, pred = torch.max(output, axis = 1)
-    _, actual = torch.max(label, axis = 1)
-    print(pred)
-    print(actual)
-    return output
+        with torch.no_grad():
+            img = img.to(DEVICE)
+            output = DINO(img)
+
+        probs = torch.softmax(output, dim = 1)
+
+        print(output)
+        model_pred = torch.argmax(probs, dim =1 )[0]
+        print(label)
+        if label == model_pred:
+            print("correct")
+        else:
+            print("Failed")
+            print(label)
+            print(model_pred)
+        #_, pred = torch.max(output, axis = 1)
+        #print(pred)
 
 
 
@@ -182,9 +196,6 @@ def start(epochs):
         print(labels.shape)
         break
 
-
-    print(dataloaders)
-
     #set up the model
     freeze_lstlayer(['WT/WT', "WT/-", "-/-","CT", "TT"])
 
@@ -193,7 +204,7 @@ def start(epochs):
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
     fine_tuned_dino = train_model(DINO, criterion, optimizer, exp_lr_scheduler, dataloaders, dataset_sizes= dataset_sizes,
-                     out_dir="/data/dennyal/repos/HistoGWAS_PGAN/embeddings/model_checkpoints",   num_epochs=epochs)
+                    out_dir="/data/dennyal/repos/HistoGWAS_PGAN/embeddings/model_checkpoints",   num_epochs=epochs)
 
 
 

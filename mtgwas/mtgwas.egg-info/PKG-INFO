@@ -1,6 +1,9 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: mtgwas
 Version: 0.1
 Summary: Univariate and multivariate models for GWAS
 Author: Francesco Paolo Casale
 Author-email: paolo.casale@helmholtz-muenchen.de
+Dynamic: author
+Dynamic: author-email
+Dynamic: summary
